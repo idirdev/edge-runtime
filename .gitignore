@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.edge/
+.env
+.env.local
+*.js.map
+*.d.ts
+!src/**/*.d.ts
+coverage/
+.cache/
