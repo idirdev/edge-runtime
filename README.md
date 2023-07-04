@@ -178,3 +178,28 @@ Bundle function code
 ## License
 
 MIT
+
+---
+
+## Français
+
+**edge-runtime** est un runtime léger pour fonctions edge et un framework serverless expérimental. Il offre un serveur de développement local avec rechargement à chaud, un routeur de requêtes avec paramètres de chemin, un stockage clé-valeur avec TTL, une chaîne de middleware (authentification JWT, limitation de débit, cache), ainsi que des outils de déploiement avec gestion blue-green et rollback.
+
+### Installation
+
+```bash
+npm install -g edge-runtime
+```
+
+### Utilisation
+
+```bash
+# Démarrer le serveur de développement
+edge dev --port 8787
+
+# Déployer en production
+edge deploy --env production
+
+# Voir les logs des fonctions
+edge logs --follow
+```
