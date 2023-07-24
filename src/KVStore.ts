@@ -16,7 +16,7 @@ export class KVStore {
     const entry = this.store.get(this.prefixKey(key));
     if (!entry) return null;
 
-    if (entry.expiresAt && Date.now() > entry.expiresAt) {
+    if (entry.expiresAt !== undefined && Date.now() >= entry.expiresAt) {
       this.store.delete(this.prefixKey(key));
       return null;
     }
@@ -28,7 +28,7 @@ export class KVStore {
     const entry = this.store.get(this.prefixKey(key));
     if (!entry) return null;
 
-    if (entry.expiresAt && Date.now() > entry.expiresAt) {
+    if (entry.expiresAt !== undefined && Date.now() >= entry.expiresAt) {
       this.store.delete(this.prefixKey(key));
       return null;
     }
@@ -50,7 +50,7 @@ export class KVStore {
     const entry: KVEntry = {
       value,
       metadata: options?.metadata,
-      expiresAt: options?.expirationTtl ? Date.now() + options.expirationTtl * 1000 : undefined,
+      expiresAt: options?.expirationTtl !== undefined ? Date.now() + options.expirationTtl * 1000 : undefined,
     };
     this.store.set(this.prefixKey(key), entry);
   }
@@ -123,7 +123,7 @@ export class KVStore {
     // Exclude expired entries from count
     let count = 0;
     for (const [, entry] of this.store) {
-      if (!entry.expiresAt || Date.now() <= entry.expiresAt) {
+      if (entry.expiresAt === undefined || Date.now() < entry.expiresAt) {
         count++;
       }
     }
