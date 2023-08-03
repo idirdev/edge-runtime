@@ -203,3 +203,4 @@ edge deploy --env production
 # Voir les logs des fonctions
 edge logs --follow
 ```
+
